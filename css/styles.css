@@ -6,5 +6,66 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     line-height: 1;
-    font-size: 100%;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    background-image: linear-gradient(to top right, rgba(20, 1, 20, 0.5), rgb(0, 0, 215, 1), rgba(20, 20, 20, 0.5));
+    background-size: 100% 100%;
+    padding: 10px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.welcome {
+    width: 100%;
+}
+
+.welcome__heading {
+    font: bold 3em/1.5em 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: whitesmoke;
+    animation: entering 3.5s ease-in-out;
+    letter-spacing: 4px;
+    margin: 30px auto;
+}
+
+/* Responsive Section */
+@media screen and (max-width: 1300px) {
+    .welcome__heading {font-size: 2.3em}
+}
+
+@media screen and (max-width: 1200px) {
+    .welcome__heading {font-size: 1.7em}
+}
+
+@media screen and (max-width: 1000px) {
+    .welcome__heading {font-size: 1.3em}
+}
+
+@media screen and (max-width: 900px) {
+    .welcome__heading {font-size: 1.1em}
+}
+
+@media screen and (max-width: 800px) {
+    .welcome__heading {font-size: 1em}
+}
+
+@media screen and (max-width: 700px) {
+    .welcome__heading {animation: none;}
+}
+
+/* Animations Section */
+@keyframes entering {
+    0% {
+        transform: translateX(-100%);
+    }
+    50% {
+        letter-spacing: 20px;
+        transform: translateX(70%);
+    }
+    100% {
+        transform: translateX(0);
+    }
 }
