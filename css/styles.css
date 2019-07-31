@@ -17,12 +17,13 @@ html, body {
 }
 
 .container {
-    width: 100vw;
+    width: 100%;
     height: auto; /* Because 100vh doesn't work on large screen */
     background-image: linear-gradient(to top right, rgba(20, 1, 20, 0.5), rgb(0, 0, 215, 1), rgba(20, 20, 20, 0.5));
     background-size: 100% 100%; /* Better than cover */
     padding: 10px;
     font-family: 'Courier New', Courier, monospace;
+    min-width: 300px;
 }
 
 .welcome {
@@ -52,7 +53,7 @@ html, body {
     box-shadow: 5px 5px 3px rgba(20, 200, 20, 0.4);
     justify-content: space-around;
     align-items: center;
-    padding-left: 10px;
+    padding: 10px;
     margin: 1% 1%;
 }
 
@@ -62,6 +63,57 @@ html, body {
 
 .replay {
     cursor: pointer; /* To look clickable */
+}
+
+.workspace {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+}
+
+.workspace__deck {
+    display: flex;
+    flex: 68%;
+    flex-flow: row wrap;
+    border: 1px solid black;
+    justify-content: space-around;
+    border-radius: 10px;
+    margin: 1%;
+}
+
+.card {
+    flex: 16%;
+    height: 115px;
+    margin: 10px 3%;
+    border: 3px solid rgba(41, 19, 141, 0.1);
+    border-radius: 10px;
+    font-size: 0;
+    cursor: pointer;
+}
+
+.card:hover {
+    -webkit-box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+    -moz-box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+    -o-box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+    box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+}
+
+/*https://paulund.co.uk/how-to-create-shiny-css-buttons*/
+/***********************************************************************
+ *  Green Background
+ **********************************************************************/
+ .green{
+    background: #56B870; /* Old browsers */
+    background: -moz-linear-gradient(top, #56B870 0%, #5a751f 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#56B870), color-stop(100%,#a5c956)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #56B870 0%,#a5c956 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #56B870 0%,#a5c956 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #56B870 0%,#a5c956 100%); /* IE10+ */
+    background: linear-gradient(top, #56B870 0%,#a5c956 100%); /* W3C */
+}
+
+.show {
+    font-size: 33px;
 }
 
 /* Responsive Section */
@@ -83,12 +135,25 @@ html, body {
 
 @media screen and (max-width: 800px) {
     .welcome__heading {font-size: 1em}
+    .card {height: 90px;}
 }
 
 @media screen and (max-width: 700px) {
     .welcome__heading {
         font-size: 0.95em;
         animation: none; /* Remove the animation on small screen */
+    }
+    .card {height: 80px;}
+}
+
+@media screen and (max-width: 550px) {
+    .card {height: 70px;}
+}
+
+@media screen and (max-width: 404px) {
+    .welcome__heading {
+        font-size: 0.75em;
+        animation: none;
     }
 }
 
