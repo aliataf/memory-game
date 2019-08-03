@@ -60,9 +60,18 @@ function download() {
             /* Parse the JSONString to an object and store it
             in leaderboard */
             leaderboard = JSON.parse(JSONString);
-            
-            // Here render the leaderboard on the screen
-            console.log(leaderboard); // Only for testing
+
+            // Render the content of leaderboard.json to the leaderboard section
+            let leadername = document.getElementsByClassName('leader_name');
+            let leadertime = document.getElementsByClassName('leader_time');
+            let leadermoves = document.getElementsByClassName('leader_moves');
+            let leaderstars = document.getElementsByClassName('leader_stars');
+            for (let i = 0; i < 3; i++) {
+                leadername[i].textContent = leaderboard.leaders[i].name;
+                leadertime[i].textContent = leaderboard.leaders[i].time;
+                leadermoves[i].textContent = leaderboard.leaders[i].moves;
+                leaderstars.textContent = leaderboard.leaders[i].stars;
+            }
         };
 
         // Prepare the request and send it

@@ -20,6 +20,7 @@ html, body {
     width: 100%;
     height: auto; /* Because 100vh doesn't work on large screen */
     background-image: linear-gradient(to top right, rgba(20, 1, 20, 0.5), rgb(0, 0, 215, 1), rgba(20, 20, 20, 0.5));
+    /* background: darkslategray; */
     background-size: 100% 100%; /* Better than cover */
     padding: 10px;
     font-family: 'Courier New', Courier, monospace;
@@ -44,9 +45,9 @@ html, body {
 }
 
 .playtools {
+    width: 98%;
     display: flex;
     flex-flow: row wrap;
-    width: 98%;
     min-height: 50px;
     border: 2px solid rgb(51, 255, 0);
     border-radius: 10px;
@@ -72,8 +73,8 @@ html, body {
 }
 
 .workspace__deck {
+    width: 68%;
     display: flex;
-    flex: 68%;
     flex-flow: row wrap;
     border: 1px solid black;
     justify-content: space-around;
@@ -82,7 +83,7 @@ html, body {
 }
 
 .card {
-    flex: 16%;
+    width: 16%;
     height: 115px;
     margin: 10px 3%;
     border: 3px solid rgba(41, 19, 141, 0.1);
@@ -116,6 +117,72 @@ html, body {
     font-size: 33px;
 }
 
+.workspace__leaderboard {
+    width: 28%;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 1%;
+    padding: 10px 10px 0 10px;
+    text-align: center;
+}
+
+.leaderboard--hr {
+    height: 5px;
+    border: 1px dashed green;
+}
+
+.leaderboard__score {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 90%;
+}
+
+.leader {
+    margin: 5px 0;
+    border: 2px solid white;
+    border-radius: 5px;
+    height: 30%;
+    display: flex;
+}
+
+.leader__left {
+    width: 30%;
+    height: 70%;
+    padding: 10px 0;
+}
+
+.leader__img {
+    width: 100%;
+    height: 120px;
+}
+
+.leader__right {
+    width: 70%;
+    height: 100%;
+    padding: 10px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.info {
+    padding: 2px;
+}
+
+.bold {
+    font-weight: bold;
+    color: floralwhite;
+}
+
+.shadow {
+    -webkit-box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+    -moz-box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+    -o-box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+    box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
+}
+
 /* Responsive Section */
 @media screen and (max-width: 1300px) {
     .welcome__heading {font-size: 2.3em}
@@ -131,28 +198,47 @@ html, body {
 
 @media screen and (max-width: 900px) {
     .welcome__heading {font-size: 1.1em}
+    .info {
+        font-size: 0.8em;
+    }
 }
 
 @media screen and (max-width: 800px) {
-    .welcome__heading {font-size: 1em}
+    .welcome__heading {
+        animation: none; /* Remove the animation on small screen */
+    }
     .card {height: 90px;}
+    .info {font-size: 0.7em;}
 }
 
 @media screen and (max-width: 700px) {
-    .welcome__heading {
-        font-size: 0.95em;
-        animation: none; /* Remove the animation on small screen */
-    }
     .card {height: 80px;}
+    .leader__img {height: 90px;}
+    .info {font-size: 0.6em;}
+}
+
+@media screen and (max-width: 600px) {
+    .info {font-size: 0.5em;}
 }
 
 @media screen and (max-width: 550px) {
     .card {height: 70px;}
+    .info {font-size: 0.4em;}
+}
+
+@media screen and (max-width: 500px) {
+    .workspace__deck {
+        width: 100%; /* Make it preserve the whole line */
+    }
+    .workspace__leaderboard {
+        width: 100%; /* Make it preserve the whole line */
+    }
+    .info {font-size: 1em;}
 }
 
 @media screen and (max-width: 404px) {
     .welcome__heading {
-        font-size: 0.75em;
+        font-size: 0.8em;
         animation: none;
     }
 }
