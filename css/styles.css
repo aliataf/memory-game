@@ -209,7 +209,7 @@ html, body {
     font-weight: bold;
 }
 
-.time, .moves, .leader_name, .leader_time, .leader_moves {
+.timer, .moves, .leader_name, .leader_time, .leader_moves {
     color: rgb(255, 174, 11);
 }
 
@@ -220,7 +220,7 @@ html, body {
 .leader_stars {
     color: black;
 }
-/* 
+
 .modal-background {
     display: none;
     position: absolute;
@@ -267,19 +267,23 @@ html, body {
 
 .modal-body strong {
     color: darkslategray;
-} */
-/*
+} 
+
 .close {
     font-size: 24pt;
     cursor: pointer;
     -webkit-touch-callout: none; /* iOS Safari */
-  /*  -webkit-user-select: none; /* Safari */
-  /*  -khtml-user-select: none; /* Konqueror HTML */
-  /*  -moz-user-select: none; /* Firefox */
-  /*  -ms-user-select: none; /* Internet Explorer/Edge */
-  /*  user-select: none; /* Chrome and Opera 
-}*/
-/* 
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Chrome and Opera */
+}
+
+.close:hover {
+    color: red;
+}
+
 .btn {
     padding: 10px;
     margin: 10px;
@@ -290,13 +294,13 @@ html, body {
     background-color: rgb(180, 180, 180);
 }
 
-.playAgainButton {
+.playAgainBtn {
     color: green;
 }
 
-.cancelButton {
+.cancelBtn {
     color: red;
-} */
+} 
 
 
 /* Animations classes */

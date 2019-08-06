@@ -110,7 +110,7 @@ download();
 let cardsArray = ['fa-flask', 'fa-graduation-cap', 'fa-horse', 'fa-infinity',
                   'fa-football-ball', 'fa-medal', 'fa-rocket', 'fa-anchor'];
 
-let timeInterval;
+let timeInterval = 0;
 
 // This shuffle function was taken from Stackoverflow.com and used to shuffle an array
 // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array/
@@ -237,20 +237,20 @@ function goodMove() {
     // Remove the animation class after it has done
     setTimeout(() => {
         clearAnimation();
-    }, 1000);
-    // Return to the initial state of no cards open
-    // but keep the two cards shown (keep the class "show")
+        // Return to the initial state of no cards open
+        // but keep the two cards shown (keep the class "show")
 
-    firstObject = null;
-    lastObject = null;
-    // Increase the numGoodMove by 2
-    numGoodMoves += 2;
-    // If numGoodMoves is equal to 16 the player wins
-    if (numGoodMoves === 16) {
-        win();
-    }
-    // Increase the number of moves
-    incMove();
+        firstObject = null;
+        lastObject = null;
+        // Increase the numGoodMove by 2
+        numGoodMoves += 2;
+        // If numGoodMoves is equal to 16 the player wins
+        if (numGoodMoves === 16) {
+            win();
+        }
+        // Increase the number of moves
+        incMove();
+    }, 1100);
 }
 
 function badMove() {
@@ -268,7 +268,7 @@ function badMove() {
         lastObject.classList.remove('show');
         firstObject = null;
         lastObject = null;
-    }, 1200);
+    }, 1100);
     // Increase the number of moves
     incMove();
 }
@@ -367,8 +367,73 @@ function incTime() {
     timer.textContent = '' + minutes.toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false }) + ':' + seconds.toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false });
 }
 
-function win() {
 
+
+
+
+/*                     *\
+ * Modal functionality *
+\*                     */
+// modalBackground will represent the div with class "modal-background"
+let modalBackground = document.querySelector('.modal-background');
+// closeBtn will represent the 'x' sign to close the modal
+let closeBtn = document.querySelector('.close');
+// playAgainBtn will represent the button with the class "playAgainBtn"
+let playAgainBtn = document.querySelector('.playAgainBtn');
+// cancelBtn will represent the button with the class "cancelBtn"
+let cancelBtn = document.querySelector('.cancelBtn');
+// modalMoves will represent the player moves in the modal
+let modalMoves = document.querySelector('.modalMoves');
+// modalTime will represent the player time in the modal
+let modalTime = document.querySelector('.modalTime');
+// modalStars will represent the stars in the modal
+let modalStars = document.getElementsByClassName('modalStars');
+// Close the modal when clicking on the modal background (outside the modal)
+modalBackground.addEventListener('click', closeModal);
+// Also close the modal when clicking on the close sign or cancel button
+closeBtn.addEventListener('click', closeModal);
+cancelBtn.addEventListener('click', closeModal);
+// This function closes the modal
+function closeModal() {
+    modalBackground.style.display = 'none';
+}
+
+// When clicking on the playAgainBtn replay
+playAgainBtn.addEventListener('click', play);
+
+
+
+
+
+/*                     *\
+ * Winning and Playing *
+\*                     */
+
+// This function will show the winning modal
+function win() {
+    // Stopping the timer
+    if (timeInterval !== 0) {
+        clearInterval(timeInterval);
+    }
+    setTimeout(() => {
+        // Showing the congratulations modal
+        modalBackground.style.display = 'block';
+        // Set the values in the modal as the player score
+        modalMoves.textContent = numMoves.textContent;
+        modalTime.textContent = timer.textContent;
+        // After getting frustrated using classList because of the hardness
+        // of assigning from one element to another className is more
+        // useful in my case
+        let s1 = stars[0].className; // Returns a string with space separated elements
+        let s2 = stars[1].className;
+        let s3 = stars[2].className;
+        s1 = s1.replace('stars', 'modalStars'); // Replace board "stars" with modal "modalStars"
+        s2 = s2.replace('stars', 'modalStars');
+        s3 = s3.replace('stars', 'modalStars');
+        modalStars[0].className = s1; // Assinging the new classes to the element
+        modalStars[1].className = s2;
+        modalStars[2].className = s3;
+    }, 800);
 }
 
 function play() {
@@ -382,7 +447,7 @@ function play() {
     // Shuffle the doubleCardsArray
     doubledCardsArray = shuffle(doubledCardsArray);
 
-    // Remove the class "show" if it is there
+    // Remove the classes "show" and "open" if they are there
     for (let i = 0; i < cards.length; i++) {
         if (cards[i].parentElement.classList.contains('show')) {
             cards[i].parentElement.classList.remove('show');
@@ -393,13 +458,16 @@ function play() {
         cards[i].setAttribute('class', 'card fas open');
     }
 
-    // Render the second part of the deck
+    // Render the deck
     for (let i = 0; i < doubledCardsArray.length; i++) {
         cards[i].classList.add(doubledCardsArray[i]);
     }
 
     // Initialize the game
-    clearInterval(timeInterval);
+    if (timeInterval !== 0) {
+        clearInterval(timeInterval);
+        timeInterval = 0;
+    }
     timer.textContent = "00:00";
     numMoves.textContent = "0";
     for (let i = 0; i < 3; i++) {
@@ -413,6 +481,9 @@ function play() {
     numGoodMoves = 0;
     isGameStart = false;
     clearAnimation();
+
+    // Hide the modal
+    modalBackground.style.display = 'none';
 }
 
 play();
