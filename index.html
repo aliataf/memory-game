@@ -15,6 +15,34 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>  
+<!-- 
+    <div class="modal-background">
+        <div class="modal shadow">
+            <div class="modal-header">
+                <div class="modal-header__title">
+                    <em>Congratulations!!!</em> &#128525; &#128525; &#128525;
+                </div>
+                <div class="close" title="Close">
+                    &cross;
+                </div>
+            </div>
+            <div class="modal-body">
+                You have completed the Memory Game successfully and matched all the cards...
+                <br>
+                <br>
+                <strong>Your score is:</strong><br>
+                <span>Moves:</span> <span class="modalMoves"></span><br>
+                Time: <span class="modalTime"></span><br>
+                Stars: <span class="modalStars"></span>
+                <br>
+                <br>
+                Would you like to play again?
+                <br>
+                <button value="Play Again!" class="btn playAgainButton">Play Again!</button>
+                <button value="Play Again!" class="btn cancelButton">Cancel</button>
+            </div>
+        </div>
+    </div> -->
 
     <div class="container">
         <div class="welcome">
@@ -24,38 +52,38 @@
         </div>
         <div class="playtools">
             <div class="playtime">
-                <i class="far fa-clock fa-lg"></i> <span class="time">00:00</span>
+                <i class="far fa-clock fa-lg"></i> <span class="timer">00:00</span>
             </div>
             <div class="num_moves">
                 Moves: <span class="moves">0</span>
             </div>
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
+            <div class="stars--div">
+                <i class="fas fa-star stars"></i>
+                <i class="fas fa-star stars"></i>
+                <i class="fas fa-star stars"></i>
             </div>
             <div class="replay">
                 <i class="fas fa-undo"></i>
             </div>
         </div>
         <div class="workspace">
-            <div class="workspace__deck shadow">
-                <div class="card green"><i class="fas"></i></div>
-                <div class="card green"><i class="fas"></i></div>
-                <div class="card green"><i class="fas"></i></div>
-                <div class="card green"><i class="fas"></i></div>
-                <div class="card green"><i class="fas"></i></div>
-                <div class="card green"><i class="fas"></i></div>
-                <div class="card green"><i class="fas"></i></div>
-                <div class="card green"><i class="fas"></i></div>
-                <div class="card green"><i class="fas"></i></div>
-                <div class="card green"><i class="fas"></i></div>
-                <div class="card green"><i class="fas"></i></div>
-                <div class="card green"><i class="fas"></i></div>
-                <div class="card green"><i class="fas"></i></div>
-                <div class="card green"><i class="fas"></i></div>
-                <div class="card green"><i class="fas"></i></div>
-                <div class="card green"><i class="fas"></i></div>
+            <div class="workspace__deck shadow open">
+                <div class="carddiv green"><i class="card fas open"></i></div>
+                <div class="carddiv green"><i class="card fas open"></i></div>
+                <div class="carddiv green"><i class="card fas open"></i></div>
+                <div class="carddiv green"><i class="card fas open"></i></div>
+                <div class="carddiv green"><i class="card fas open"></i></div>
+                <div class="carddiv green"><i class="card fas open"></i></div>
+                <div class="carddiv green"><i class="card fas open"></i></div>
+                <div class="carddiv green"><i class="card fas open"></i></div>
+                <div class="carddiv green"><i class="card fas open"></i></div>
+                <div class="carddiv green"><i class="card fas open"></i></div>
+                <div class="carddiv green"><i class="card fas open"></i></div>
+                <div class="carddiv green"><i class="card fas open"></i></div>
+                <div class="carddiv green"><i class="card fas open"></i></div>
+                <div class="carddiv green"><i class="card fas open"></i></div>
+                <div class="carddiv green"><i class="card fas open"></i></div>
+                <div class="carddiv green"><i class="card fas open"></i></div>
             </div>
             <div class="workspace__leaderboard shadow">
                 <div class="leaderboard__welcome">
@@ -82,13 +110,15 @@
                             </div>
                             <div class="info">
                                 <span class="bold">Stars: </span>
-                                <span class="leader_stars"></span>
+                                <i class="leader_stars"></i>
+                                <i class="leader_stars"></i>
+                                <i class="leader_stars"></i>
                             </div>
                         </div>
                     </div>
                     <div class="leader">
                         <div class="leader__left">
-                            <img class="leader__img" src="./img/2.png" alt="1st leader">
+                            <img class="leader__img" src="./img/2.png" alt="2nd leader">
                         </div>
                         <div class="leader__right">
                             <div class="info">
@@ -105,13 +135,15 @@
                             </div>
                             <div class="info">
                                 <span class="bold">Stars: </span>
-                                <span class="leader_stars"></span>
+                                <i class="leader_stars"></i>
+                                <i class="leader_stars"></i>
+                                <i class="leader_stars"></i>
                             </div>
                         </div>
                     </div>
                     <div class="leader">
                         <div class="leader__left">
-                            <img class="leader__img" src="./img/3.png" alt="1st leader">
+                            <img class="leader__img" src="./img/3.png" alt="3rd leader">
                         </div>
                         <div class="leader__right">
                             <div class="info">
@@ -128,7 +160,9 @@
                             </div>
                             <div class="info">
                                 <span class="bold">Stars: </span>
-                                <span class="leader_stars"></span>
+                                <i class="leader_stars"></i>
+                                <i class="leader_stars"></i>
+                                <i class="leader_stars"></i>
                             </div>
                         </div>
                     </div>
