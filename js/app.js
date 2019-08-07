@@ -17,6 +17,16 @@
 
 
 
+// Getting the name of the user at the very first beginning
+let playerName;
+do {
+    playerName = window.prompt('Welcome to Memory Game\nPlease enter your name:');
+} while(playerName == "" || playerName == null);
+
+
+
+
+
 // Setting up Firebase configuration
 let firebaseConfig = {
     apiKey: "AIzaSyAjDNRCGH7euu3Db8QdETB49Z4ZrnHq0bM",
@@ -60,6 +70,16 @@ function download() {
             /* Parse the JSONString to an object and store it
             in leaderboard */
             leaderboard = JSON.parse(JSONString);
+
+            // for (let i = 0; i < 3; i++) {
+            //     leaderboard.leaders[i].name = `Player ${i}`;
+            //     leaderboard.leaders[i].time = "59:59";
+            //     leaderboard.leaders[i].moves = 50;
+            //     for (let j = 0; j < 3; j++) {
+            //         leaderboard.leaders[i].stars[j] = "leader_stars far fa-star";
+            //     }
+            // }
+            // upload();
 
             // Render the content of leaderboard.json to the leaderboard section
             let leadername = document.getElementsByClassName('leader_name');
@@ -415,6 +435,7 @@ function win() {
     if (timeInterval !== 0) {
         clearInterval(timeInterval);
     }
+
     setTimeout(() => {
         // Showing the congratulations modal
         modalBackground.style.display = 'block';
@@ -433,7 +454,56 @@ function win() {
         modalStars[0].className = s1; // Assinging the new classes to the element
         modalStars[1].className = s2;
         modalStars[2].className = s3;
-    }, 800);
+
+        // Testing if the player is on the top 3 player
+        let c; // counter
+        for (c = 0; c < 3; c++) {
+            let leader = leaderboard.leaders[c]; // current leader
+            let playerMoves = Number(numMoves.textContent);
+            if (playerMoves < leader.moves) { // less moves means best performance
+                // Update the player info to become the player
+                leader.name = playerName;
+                leader.moves = playerMoves;
+                leader.time = timer.textContent;
+                let c1 = stars[0].className, c2 = stars[1].className, c3 = stars[2].className;
+                c1 = c1.replace('stars', 'leader_stars');
+                c2 = c2.replace('stars', 'leader_stars');
+                c3 = c3.replace('stars', 'leader_stars');
+                leader.stars[0] = c1;
+                leader.stars[1] = c2;
+                leader.stars[2] = c3;
+                upload();
+                download();
+                window.alert('Congratulations you will be added to the Leaderboard and you are now among the top 3 players');
+                break;
+            }
+            else if (playerMoves === leader.moves) { // Same moves --> compare the time
+                let leaderMinutes = Number(leader.time.substr(0, 2)); // First 2 digits 00:00
+                let leaderSeconds = Number(leader.time.substr(3)); // Last 2 digits 00:00
+                // Converts the two times to seconds
+                let leaderTime = leaderMinutes * 60 + leaderSeconds;
+                let playerTime = minutes * 60 + seconds;
+                // Compare playerTime with leaderTime
+                if (playerTime < leaderTime) {
+                    // Update the player info to become the player
+                    leader.name = playerName;
+                    leader.moves = playerMoves;
+                    leader.time = timer.textContent;
+                    let c1 = stars[0].className, c2 = stars[1].className, c3 = stars[2].className;
+                    c1 = c1.replace('stars', 'leader_stars');
+                    c2 = c2.replace('stars', 'leader_stars');
+                    c3 = c3.replace('stars', 'leader_stars');
+                    leader.stars[0] = c1;
+                    leader.stars[1] = c2;
+                    leader.stars[2] = c3;
+                    upload();
+                    download();
+                    window.alert('Congratulations you will be added to the Leaderboard and you are now among the top 3 players');
+                    break;
+                }
+            }
+        }
+    }, 600);
 }
 
 function play() {
