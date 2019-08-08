@@ -14,8 +14,9 @@
 \* * * * * * * * * * * * * * * * * * * * * * * * * */
 
 
-
-
+// Call the download function while the user is entering his name
+// P.S: everything is explained below about the function
+setTimeout(() => download(), 100);
 
 // Getting the name of the user at the very first beginning
 let playerName;
@@ -117,8 +118,6 @@ function upload() {
     leaderboardFile.put(JSONFile);
 }
 
-// Now call download function
-download();
 
 
 
